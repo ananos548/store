@@ -1,3 +1,45 @@
 body{
-	background-color: white;
+	background: url("https://clck.ru/32fvq9");
+    margin: 0;
+    display: block;
+    background-attachment: fixed;
+    position: relative;
+    background-size: cover;
+    background-position: center center;
+}
+
+#block_element{
+	background-color: #d18428;
+	height: 88vh;
+	width: 39.5%;
+	float: right;
+	margin-top: 27px;
+	margin-right: 20px;
+	opacity: 0.95;
+	border-radius: 10px;
+
+}
+
+
+#Main_page_text{
+	color: #efeeee;
+	font-family: "Raleway";
+	font-size: 3.3vw;
+	text-align: center;
+	margin: 0 auto;
+	font-weight: lighter;
+}
+
+
+#categories{
+    color: orange;
+    font-family: "Raleway";
+    font-weight: bold;
+	text-align: center;
+}
+
+img:hover{
+	transition: all .6s ease;
+	opacity: 0.9;
+	transform: scale(1.1);
 }

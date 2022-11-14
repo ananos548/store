@@ -1,6 +1,14 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from .models import Category
+from django.views.generic import ListView
 
 
-def index(request):
-    return render(request, 'store/index.html')
+
+class ListCategoryView(ListView):
+    template_name = 'index.html'
+    model = Category
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(ListCategoryView, self).get_context_data(**kwargs)
+        context['categories'] = Category.objects.all()
+        return context

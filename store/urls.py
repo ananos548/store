@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path
-from store.views import *
+from .views import *
 
 urlpatterns = [
-    path('', index),
+    path('', ListCategoryView.as_view()),
 ]
