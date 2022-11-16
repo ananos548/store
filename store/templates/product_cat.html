@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}
+    {% for category in categories %}
+    {{ category.title }}
+    {% endfor %}
+{% endblock %}
+{% block content %}
+<body>
+{% for category in categories %}
+    <p style="margin-top: 10px; margin-left: 5px; font-weight: bold;">
+        <a href="{% url 'index' %}" class="on_main_page">На главную</a><br>
+        {{ category.title }}
+    </p>
+    <section class="mt-5 pt-3">
+        <div class="row mb-0">
+            <div class="col-4 col-md-6 col-lg-3" style="height: 0;">
+        {% for product in products %}
+            {% if category.id == product.category_id %}
+                <div style="margin-left: 30px">
+                <a href="{% url 'product_detail' product.id %}">
+                    <img src="{{ product.image.url }}" style="width:15vh; height:15vh;"><br>
+                </a>
+                {{ product.name }}<br>
+                {{ product.price }}<br>
+                </div>
+            {% endif %}
+        {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endfor %}
+</body>
+{% endblock %}

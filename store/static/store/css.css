@@ -1,4 +1,4 @@
-body{
+#body{
 	background: url("https://clck.ru/32fvq9");
     margin: 0;
     display: block;
@@ -24,7 +24,7 @@ body{
 #Main_page_text{
 	color: #efeeee;
 	font-family: "Raleway";
-	font-size: 3.3vw;
+	font-size: 3.1vw;
 	text-align: center;
 	margin: 0 auto;
 	font-weight: lighter;
@@ -42,4 +42,14 @@ img:hover{
 	transition: all .6s ease;
 	opacity: 0.9;
 	transform: scale(1.1);
+}
+
+.on_main_page{
+	color: black;
+	text-decoration: none;
+}
+
+.on_main_page:hover{
+	color: black;
+	text-decoration: none;
 }
