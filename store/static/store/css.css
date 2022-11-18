@@ -38,7 +38,7 @@
 	text-align: center;
 }
 
-img:hover{
+#category_main_picture:hover{
 	transition: all .6s ease;
 	opacity: 0.9;
 	transform: scale(1.1);
@@ -52,4 +52,28 @@ img:hover{
 .on_main_page:hover{
 	color: black;
 	text-decoration: none;
+}
+
+#cat_product{
+	margin-left: 60px;
+	border: 2px solid whitesmoke;
+	margin-top: 2px;
+	width: 160px;
+}
+
+#cat_image:hover{
+	opacity: 0.2
+}
+
+#product_detail{
+	text-align: center;
+
+}
+
+.product_description{
+    margin-left: auto;
+    margin-right: auto;
+    width: 500px;
+    font-size: 25px;
+    color: #1d1d1d;
 }

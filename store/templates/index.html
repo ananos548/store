@@ -16,7 +16,7 @@
             <div class=""
                  style="background-color: black; margin-top: 405px; opacity: 0.9; border-radius: 3px; width: 190px; margin-left: 5vw">
                 {% if category.picture %}
-                <a href="{% url 'category' category.code %}" id="picture"><img class="mx-auto d-block" src="{{ category.picture.url }}" width="80"
+                <a href="{% url 'category' category.code %}" id="picture"><img id="category_main_picture" class="mx-auto d-block" src="{{ category.picture.url }}" width="80"
                                               height="80" alt=""></a>
                 {% endif %}
                 <div class="card-body">
