@@ -58,7 +58,8 @@
 	margin-left: 60px;
 	border: 2px solid whitesmoke;
 	margin-top: 2px;
-	width: 160px;
+	width: 149px;
+	height: 149px;
 }
 
 #cat_image:hover{
@@ -73,7 +74,24 @@
 .product_description{
     margin-left: auto;
     margin-right: auto;
-    width: 500px;
+    width: 1000px;
     font-size: 25px;
     color: #1d1d1d;
+}
+
+#register_form{
+	margin-top: 200px;
+	font-size: 25px;
+	color: orange;
+}
+
+.is_not_authenticated{
+	color: black;
+	font-size: 20px;
+}
+
+.is_not_authenticated:hover{
+	font-size: 22px;
+	text-decoration: none;
+	color: #1d1d1d;
 }

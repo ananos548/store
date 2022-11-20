@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)
 
 
 class MainView(ListView):
-    template_name = 'index.html'
+    template_name = 'store/index.html'
     model = Category
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -19,7 +19,7 @@ class MainView(ListView):
 
 
 class ListCategoryView(ListView):
-    template_name = 'product_cat.html'
+    template_name = 'store/product_cat.html'
     model = Category
     slug_field = 'code'
     slug_url_kwarg = 'code'
@@ -39,5 +39,5 @@ class ListCategoryView(ListView):
 
 
 class DetailProductView(DetailView):
-    template_name = 'product_detail.html'
+    template_name = 'store/product_detail.html'
     model = Product

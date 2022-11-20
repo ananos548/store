@@ -6,6 +6,13 @@
 {% endblock %}
 {% block content %}
 <body>
+    {% if request.user.is_authenticated  %}
+        <p style="font-weight: bold; float: right; margin-right: 33px">{{ request.user.username }}</p>
+    {% else %}
+    <p>
+        <a href="{% url 'login' %}" class="is_not_authenticated" style="font-weight: bold; float: right; margin-right: 33px">Sing in</a>
+        <a href="{% url 'register' %}" class="is_not_authenticated" style="font-weight: bold; float: right; margin-right: 33px">Sing up</a>
+    {% endif %}
 {% for category in categories %}
     <p style="margin-top: 10px; margin-left: 5px; font-weight: bold;">
         <a href="{% url 'index' %}" class="on_main_page">На главную</a><br>
