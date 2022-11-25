@@ -4,10 +4,10 @@
 
 {% block content %}
 <body>
-    <p style="margin-top: 10px; margin-left: 5px; font-weight: bold;">
-        <a href="{% url 'index' %}" class="on_main_page">На главную</a><br>
-        <a href="{{ request.META.HTTP_REFERER }}" class="on_main_page">Назад</a>
-    </p>
+<p style="margin-top: 10px; margin-left: 5px; font-weight: bold;">
+    <a href="{% url 'index' %}" class="on_main_page">На главную</a><br>
+    <a href="{{ request.META.HTTP_REFERER }}" class="on_main_page">Назад</a>
+</p>
 <div id="product_detail">
     <a href="{% url 'product_detail' product.id %}">
         <img src="{{ product.image.url }}" style="width:25vh; height:25vh;"><br>
@@ -22,6 +22,12 @@
     <h3>Описание товара</h3>
     <p class="product_description">{{ product.description }}</p>
     Дата публикации {{ product.published_at }}
+    <form method="post" action="{% url 'cart_add' product.id %}">
+        <p style="display: none"></p>
+        {{ form }}
+        {% csrf_token %}
+        <input type="submit" value="Add to cart">
+    </form>
 </div>
 </body>
 {% endblock %}
