@@ -29,6 +29,12 @@ class Cart(object):
         self.session[settings.CART_SESSION_ID] = self.cart
         self.session.modified = True  # Отметить сеанс как "измененный", чтобы убедиться, что он сохранен
 
+    def remove_some(self, product):
+        product_id = str(product.id)
+        if product_id in self.cart:
+            self.cart[product_id]['quantity'] -= 1
+            self.save()
+
     def remove(self, product):
         product_id = str(product.id)
         if product_id in self.cart:

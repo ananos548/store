@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+Your shopping cart
+{% endblock %}
+{% block content %}
+<body style="background-color: whitesmoke;">
+<h1>Корзина</h1>
+    <div class="item">
+        {% if cart|length > 0 %}
+        <p style="float: right; font-weight: bolder ;color: black; text-decoration-line: none">
+            Товары: {{ cart|length }} шт.
+            ({{ cart.get_total_price }} руб)
+        </p>
+
+            <ul style="
+                list-style-type: none;
+                padding-left: 91px;
+                width: 335px;
+                background-color: white;
+                margin-left: 40%;
+                ">
+            {% for item in cart %}
+            {% with product=item.product %}
+            <div style="border-bottom: 1px silver solid; width: 5px;">
+                <li style="font-weight: bolder; font-size: 20px">{{ product.name }}</li>
+            <form action="{% url 'cart_add' product.id %}" method="post">
+                <div style="background-color: white; margin-left: 180px; margin-right: 180px;">
+                    {% csrf_token %}
+                    {% for field in form %}
+                    <div class="form-group"></div>
+                    <div>{{ field }}</div>
+                    {% endfor %}
+                    <div class="buttons">
+                        <button type="submit" class="btn btn-warning">+</button>
+                        <a class="btn btn-warning" href="{% url 'cart_remove_few' product.id %}">-</a>
+                        <a class="" href="{% url 'cart_remove_all' product.id %}">Удалить</a>
+                    </div>
+                    <div class="image">
+                        <img style="width:15vh; height:15vh; margin-left: 40vw;" src="{{ product.image.url }}">
+                    </div>
+                    <div class="description">
+                        <span>{{ product.name }}</span>
+                        <span>кол-во {{ item.quantity }}</span>
+                    </div>
+                    <div class="total-price">{{ item.total_price }}</div>
+                </div>
+            </form>
+            {% endwith %}
+            {% endfor %}
+            <li class="total">
+                <td> Общая стоимость:</td>
+                <td colspan="4"></td>
+                <td class="num">{{ cart.get_total_price }} руб</td>
+            </li>
+        </ul>
+        {% else %}
+        Тут пусто
+        {% endif %}
+    </div>
+</body>
+{% endblock %}
