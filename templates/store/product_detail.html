@@ -4,13 +4,10 @@
 
 {% block content %}
 <body>
-<p style="margin-top: 10px; margin-left: 5px; font-weight: bold;">
-    <a href="{% url 'index' %}" class="on_main_page">На главную</a><br>
-    <a href="{{ request.META.HTTP_REFERER }}" class="on_main_page">Назад</a>
-</p>
+
 <div id="product_detail">
     <a href="{% url 'product_detail' product.id %}">
-        <img src="{{ product.image.url }}" style="width:25vh; height:25vh;"><br>
+        <img src="{{ product.image.url }}" style="width:15vh; height:auto;"><br>
     </a>
     <p style="font-size: 20px">{{ product.name }}</p>
     <p style="font-size: 22px">{{ product.price }} руб.</p>
@@ -26,7 +23,11 @@
         <p style="display: none"></p>
         {{ form }}
         {% csrf_token %}
+        {% if request.user.is_authenticated %}
         <input type="submit" value="Add to cart">
+        {% else %}
+        <p>Войдите, чтобы добавить в корзину</p>
+        {% endif %}
     </form>
 </div>
 </body>

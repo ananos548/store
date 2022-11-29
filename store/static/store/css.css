@@ -54,6 +54,7 @@
 	text-decoration: none;
 }
 
+
 #cat_product{
 	margin-left: 60px;
 	border: 2px solid whitesmoke;
@@ -64,6 +65,15 @@
 
 #cat_image:hover{
 	opacity: 0.2
+}
+
+#cat_laptop_image{
+    width: 200px;
+    border: 2px solid whitesmoke;
+    height: 149px;
+}
+#cat_laptop_image:hover{
+    opacity: 0.2
 }
 
 #product_detail{

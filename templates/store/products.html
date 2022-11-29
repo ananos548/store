@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}
+List
+{% endblock %}
+{% block content %}
+<body style="background-color: whitesmoke;">
+{% for product in products %}
+<main class="container mt-3" style="text-align: center; max-width: 500px;">
+    <div style="border: 5px solid white; background-color: white;">
+        <a href="{% url 'product_detail' product.id %}">
+            <img src="{{ product.image.url }}" style="width:15vh; height:auto;"><br>
+        </a>
+        <p style="font-size: 20px">{{ product.name }}</p>
+        <p style="font-size: 22px">{{ product.price }} руб.</p>
+        <form method="post" action="{% url 'cart_add' product.id %}"><br>
+            <p style="display: none"></p>
+            {{ form }}
+            {% csrf_token %}
+            {% if request.user.is_authenticated %}
+            <input type="submit" value="Add to cart">
+            {% else %}
+            <p>Войдите, чтобы добавить в корзину</p>
+            {% endif %}
+        </form>
+    </div>
+    </div>
+    </div>
+</main>
+{% endfor %}
+</body>
+{% endblock %}

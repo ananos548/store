@@ -1,8 +1,12 @@
-{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Main Page </title>
+</head>
 
-{% block title %} Main Page {% endblock %}
 
-{% block content %}
 <body id="body">
 <div id="block_element">
     <h2 id="Main_page_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
@@ -10,6 +14,20 @@
         Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. </h2>
 </div>
 <section class="mt-5 pt-3">
+    <main class="container mt-3">
+    <form class="form-inline mb-3" action="{% url 'search' %}" method="get">
+    <div class="form-group col-8 col-md-10 pl-0">
+        <input class="form-control w-100" type="search" placeholder="Поиск по сайту" name="search">
+    </div>
+    <div class="form-group col-4 col-md-2 pl-0">
+        <button class="btn btn-info" type="submit">Найти</button>
+    </div>
+    </form>
+    <p>Например:
+        <a href="#" class="text-dark border-bottom border-dark m-2 text-decoration-none">Samsung</a>
+        <a href="#" class="text-dark border-bottom border-dark m-2 text-decoration-none">Dualsense</a>
+</main>
+</p>
     <div class="row mb-0">
         {% for category in categories %}
         <div class="col-4 col-md-6 col-lg-3" style="height: 0;">
@@ -25,7 +43,16 @@
             </div>
         </div>
         {% endfor %}
+         <a href="{% url 'products' %}" style="text-decoration: none;"><p style="color: white; font-weight: bolder; font-size: 50px; margin-left: -540px; margin-top: 650px;">All Products</p></a>
     </div>
 </section>
 </body>
-{% endblock %}
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<link rel="stylesheet" href="{% static 'store/css.css' %}">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="shortcut icon" href="https://clck.ru/32nKqc" type="image/png">

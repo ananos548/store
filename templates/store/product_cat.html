@@ -6,36 +6,30 @@
 {% endblock %}
 {% block content %}
 <body>
-{% if request.user.is_authenticated %}
-<div class="dropdown">
-    <button class="btn dropdown-toggle font-weight-bold" data-easy-toggle="#dropdown" data-easy-class="show"
-            data-easy-rcoe>
-        {{ request.user.username }}
-    </button>
-    <div id="dropdown" class="dropdown-menu" style="min-width: 5.75rem; margin-top: 5px;">
-        <a href="#" class="dropdown-link">Корзина</a>
-        <a href="{% url 'logout' %}" class="dropdown-link">Выйти</a>
-    </div>
-</div>
-{% else %}
-<p>
-    <a href="{% url 'login' %}" class="is_not_authenticated"
-       style="font-weight: bold; float: right; margin-right: 33px">Sing in</a>
-    <a href="{% url 'register' %}" class="is_not_authenticated"
-       style="font-weight: bold; float: right; margin-right: 33px">Sing up</a>
-    {% endif %}
     {% for category in categories %}
-<p style="margin-top: 10px; margin-left: 5px; font-weight: bold;">
-    <a href="{% url 'index' %}" class="on_main_page">На главную</a><br>
+<!--<p style="text-align: center; font-size: 35px;">{{ category.title }}</p>-->
+<!--    <main class="container mt-3">-->
+<!-- <form class="form-inline mb-3" action="{% url 'search' %}" method="get">-->
+<!--    <div class="form-group col-8 col-md-10 pl-0">-->
+<!--        <input class="form-control w-100" type="search"  type="text" placeholder="Поиск по сайту"-->
+<!--               aria-label="Поиск по сайту" name="search">-->
+<!--    </div>-->
+<!--    <div class="form-group col-4 col-md-2 pl-0">-->
+<!--        <button class="btn btn-info" type="submit">Найти</button>-->
+<!--    </div>-->
+<!--    </form>-->
+<!--    <p>Например:-->
+<!--        <a href="#" class="text-dark border-bottom border-dark m-2 text-decoration-none">Samsung</a>-->
+<!--        <a href="#" class="text-dark border-bottom border-dark m-2 text-decoration-none">Dualsense</a>-->
+<!--</main>-->
 </p>
-<p style="text-align: center; font-size: 35px;">{{ category.title }}</p>
 <section class="mt-5 pt-3">
     <div class="row mb-0">
         {% for product in products %}
         {% if category.id == product.category_id %}
         <div id="cat_product">
             <a href="{% url 'product_detail' product.id %}">
-                <img id='cat_image' src="{{ product.image.url }}" style="width:15vh; height:15vh;"><br>
+                <img src="{{ product.image.url }}" style="width:15vh; height:auto;"><br>
             </a>
             <p style="font-size: 20px">{{ product.name }}</p>
             <p style="font-size: 22px">{{ product.price }} руб.</p>
@@ -43,7 +37,11 @@
         <p style="display: none"></p>
         {{ form }}
         {% csrf_token %}
+        {% if request.user.is_authenticated %}
         <input type="submit" value="Add to cart">
+        {% else %}
+        <p>Войдите, чтобы добавить в корзину</p>
+        {% endif %}
     </form>
         </div>
         {% endif %}
@@ -53,21 +51,4 @@
 </section>
 {% endfor %}
 </body>
-<script>
-    /**
- * EasyToggler 1.2.0
- * Simple class switcher on web elements. JavaScript only.
- * GitHub: https://github.com/rah-emil/easy-toggler
- *
- * Copyright 2020 Rah Emil
- *
- * Released under the MIT License
- *
- * Released: July 21, 2020
- * Latest updates: July 21, 2021
- */
-
-!function(){"use strict";document.addEventListener("click",function(t){const e=t.target.closest("[data-easy-toggle]");if(e){t.preventDefault();let a=e.getAttribute("data-easy-toggle"),s=e.getAttribute("data-easy-class");try{document.querySelectorAll("[data-easy-toggle]").forEach(t=>{t.hasAttribute("data-easy-parallel")||t===e||document.querySelector(t.getAttribute("data-easy-toggle")).classList.remove(t.getAttribute("data-easy-class"))}),document.querySelector(a).classList.toggle(s)}catch(t){console.warn("EasyToggler.js : Блок "+a+" не существует")}}if(!e){let e=document.querySelectorAll("[data-easy-rcoe]");Array.from(e).forEach.call(e,function(e){let a=e.getAttribute("data-easy-toggle"),s=e.getAttribute("data-easy-class");if(!t.target.closest(a))try{document.querySelector(a).classList.remove(s)}catch(t){console.warn("EasyToggler.js : Блок "+a+" не существует")}})}})}();
-
-</script>
 {% endblock %}

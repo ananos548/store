@@ -1,12 +1,10 @@
-{% extends 'base.html' %}
+{% extends 'account/base.html' %}
 
 {% block title %} Main Page {% endblock %}
 
 {% block content %}
 <body style="background-color: #1d1d1d;">
-    <p style="font-size: 25px;"><a href="{% url 'index' %}" style="color: orange; float: left;">На главную</a></p>
 <main class="container">
-    <p style="font-size: 25px;"><a href="{{ request.META.HTTP_REFERER }}" style="color: orange; float: left;">Назад</a></p><br>
     <div class="col-8 col-lg-4 offset-2 offset-lg-4">
         <form method="post" action="" id="register_form">
             {% csrf_token %}

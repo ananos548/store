@@ -5,10 +5,50 @@
     <meta charset="UTF-8">
     <title>{% block title %}Title{% endblock %}</title>
 </head>
+
+
+<body>
+{% if request.user.is_authenticated %}
+<div class="dropdown">
+    <button class="btn dropdown-toggle font-weight-bold" data-easy-toggle="#dropdown" data-easy-class="show"
+            data-easy-rcoe>
+        {{ request.user.username }}
+        ({{ cart|length }})
+    </button>
+    <div id="dropdown" class="dropdown-menu" style="min-width: 5.75rem; margin-top: 5px;">
+        <a href="{% url 'cart_detail' %}" class="dropdown-link">Корзина <p style="color: red;">({{ cart|length }})</p>
+        </a>
+        <a href="{% url 'logout' %}" class="dropdown-link">Выйти</a>
+    </div>
+</div>
+{% else %}
+<p>
+    <a href="{% url 'login' %}" class="is_not_authenticated"
+       style="font-weight: bold; float: right; margin-right: 33px">Sing in</a>
+    <a href="{% url 'register' %}" class="is_not_authenticated"
+       style="font-weight: bold; float: right; margin-right: 33px">Sing up</a>
+    {% endif %}
+<p style="margin-top: 10px; margin-left: 5px; font-weight: bold;">
+    <a href="{% url 'index' %}" class="on_main_page">На главную</a><br>
+    <a href="{% url 'products' %}" class="on_main_page">Ко всем продуктам</a>
+</p>
+
 {% block content %}
 {% endblock %}
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="{% static 'store/css.css' %}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="shortcut icon" href="https://clck.ru/32nKqc" type="image/png">
+</body>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<link rel="stylesheet" href="{% static 'store/css.css' %}">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="shortcut icon" href="https://clck.ru/32nKqc" type="image/png">
+<script>
+!function(){"use strict";document.addEventListener("click",function(t){const e=t.target.closest("[data-easy-toggle]");if(e){t.preventDefault();let a=e.getAttribute("data-easy-toggle"),s=e.getAttribute("data-easy-class");try{document.querySelectorAll("[data-easy-toggle]").forEach(t=>{t.hasAttribute("data-easy-parallel")||t===e||document.querySelector(t.getAttribute("data-easy-toggle")).classList.remove(t.getAttribute("data-easy-class"))}),document.querySelector(a).classList.toggle(s)}catch(t){console.warn("EasyToggler.js : Блок "+a+" не существует")}}if(!e){let e=document.querySelectorAll("[data-easy-rcoe]");Array.from(e).forEach.call(e,function(e){let a=e.getAttribute("data-easy-toggle"),s=e.getAttribute("data-easy-class");if(!t.target.closest(a))try{document.querySelector(a).classList.remove(s)}catch(t){console.warn("EasyToggler.js : Блок "+a+" не существует")}})}})}();
+
+
+
+
+</script>

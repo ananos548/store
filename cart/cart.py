@@ -33,7 +33,10 @@ class Cart(object):
         product_id = str(product.id)
         if product_id in self.cart:
             self.cart[product_id]['quantity'] -= 1
-            self.save()
+
+        if self.cart[product_id]['quantity'] < 1:
+            del self.cart[product_id]
+        self.save()
 
     def remove(self, product):
         product_id = str(product.id)
