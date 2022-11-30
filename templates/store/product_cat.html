@@ -7,21 +7,21 @@
 {% block content %}
 <body>
     {% for category in categories %}
-<!--<p style="text-align: center; font-size: 35px;">{{ category.title }}</p>-->
-<!--    <main class="container mt-3">-->
-<!-- <form class="form-inline mb-3" action="{% url 'search' %}" method="get">-->
-<!--    <div class="form-group col-8 col-md-10 pl-0">-->
-<!--        <input class="form-control w-100" type="search"  type="text" placeholder="Поиск по сайту"-->
-<!--               aria-label="Поиск по сайту" name="search">-->
-<!--    </div>-->
-<!--    <div class="form-group col-4 col-md-2 pl-0">-->
-<!--        <button class="btn btn-info" type="submit">Найти</button>-->
-<!--    </div>-->
-<!--    </form>-->
-<!--    <p>Например:-->
-<!--        <a href="#" class="text-dark border-bottom border-dark m-2 text-decoration-none">Samsung</a>-->
-<!--        <a href="#" class="text-dark border-bottom border-dark m-2 text-decoration-none">Dualsense</a>-->
-<!--</main>-->
+<p style="text-align: center; font-size: 35px;">{{ category.title }}</p>
+    <main class="container mt-3">
+ <form class="form-inline mb-3" action="{% url 'search' %}" method="get">
+    <div class="form-group col-8 col-md-10 pl-0">
+        <input class="form-control w-100" type="search"  type="text" placeholder="Поиск по сайту"
+               aria-label="Поиск по сайту" name="search">
+    </div>
+    <div class="form-group col-4 col-md-2 pl-0">
+        <button class="btn btn-info" type="submit">Найти</button>
+    </div>
+    </form>
+    <p>Например:
+        <a href="#" class="text-dark border-bottom border-dark m-2 text-decoration-none">Samsung</a>
+        <a href="#" class="text-dark border-bottom border-dark m-2 text-decoration-none">Dualsense</a>
+</main>
 </p>
 <section class="mt-5 pt-3">
     <div class="row mb-0">
