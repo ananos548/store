@@ -1,0 +1,17 @@
+{% extends 'account/base.html' %}
+
+{% block title %} Main Page {% endblock %}
+
+{% block content %}
+<body style="background-color: #1d1d1d;">
+<main class="container">
+    <div class="col-8 col-lg-4 offset-2 offset-lg-4">
+        <form method="post" action="" id="register_form">
+            {% csrf_token %}
+            {{ form }}
+            <button type="submit" class="btn btn-warning" style="margin-top: 10px; font-size: 20px;">Sign in</button>
+        </form>
+    </div>
+</main>
+</body>
+{% endblock %}

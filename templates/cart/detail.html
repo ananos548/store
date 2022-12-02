@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+Your shopping cart
+{% endblock %}
+{% block content %}
+
+<body>
+    <h1> Корзина </h1>
+        {% if cart|length > 0 %}
+        <p style="font-weight: bolder ;color: black;">
+            Товары: {{ cart|length }} шт.
+            ({{ cart.get_total_price }} руб)
+        </p>
+        <ul style="list-style-type: none; display: flex; ">
+            {% for item in cart %}
+            {% with product=item.product %}
+            <form action="{% url 'cart_add' product.id %}" method="post" >
+                <div class="row mb-0" style="margin-left: 50px; border: 1px solid black;">
+                {% csrf_token %}
+                    <li><img src="{{ product.image.url }}" style="width:15vh; height: auto;"></li>
+                Кол-во {{ item.quantity }}
+                </div>
+                <p style="text-align: center;">{{ product.name }}</p>
+                {% for field in form %}
+                <div class="form-group" style="margin-left: 50px">{{ field }}</div>
+                {% endfor %}
+                    <button type="submit" class="btn btn-success">+</button>
+                    <a class="btn btn-danger" href="{% url 'cart_remove_few' product.id %}">-</a>
+                    <a class="btn btn-danger" href="{% url 'cart_remove_all' product.id %}">Удалить</a>
+                <div class="total-price">{{ item.total_price }}</div>
+            </form>
+
+    {% endwith %}
+    {% endfor %}<br>
+    </ul>
+
+    {% else %}
+    Тут пусто
+    {% endif %}
+</body>
+{% endblock %}

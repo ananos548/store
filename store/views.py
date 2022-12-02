@@ -1,25 +1,38 @@
-import logging
-
+from django.db.models import Q
 from django.http import Http404
+from django.views.generic.edit import BaseFormView
 
+from cart.forms import CartForm
 from .models import Category, Product
 from django.views.generic import ListView, DetailView
 
-logger = logging.getLogger(__name__)
 
-
-class MainView(ListView):
-    template_name = 'index.html'
+class ListMainView(ListView):
+    template_name = 'store/index.html'
     model = Category
 
     def get_context_data(self, *, object_list=None, **kwargs):
-        context = super(MainView, self).get_context_data(**kwargs)
+        context = super(ListMainView, self).get_context_data(**kwargs)
         context['categories'] = Category.objects.all()
         return context
 
 
-class ListCategoryView(ListView):
-    template_name = 'product_cat.html'
+class CartFormView(BaseFormView):
+    form_class = CartForm
+
+
+class ListProductsView(CartFormView, ListView):
+    template_name = 'store/products.html'
+    model = Product
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(ListProductsView, self).get_context_data(**kwargs)
+        context['products'] = Product.objects.all()
+        return context
+
+
+class ListCategoryView(CartFormView, ListView):
+    template_name = 'store/product_cat.html'
     model = Category
     slug_field = 'code'
     slug_url_kwarg = 'code'
@@ -37,7 +50,32 @@ class ListCategoryView(ListView):
         context['products'] = Product.objects.all()
         return context
 
+    def get_success_url(self):
+        return self.request.path
 
-class DetailProductView(DetailView):
-    template_name = 'product_detail.html'
+
+class DetailProductView(CartFormView, DetailView):
+    template_name = 'store/product_detail.html'
     model = Product
+
+    def get_success_url(self):
+        return self.request.path
+
+    def form_valid(self, form):
+        return super().form_valid(form)
+
+
+class SearchView(CartFormView, ListView):
+    context_object_name = 'products'
+    template_name = 'store/products.html'
+
+    def get_queryset(self):
+        query = self.request.GET.get('search', '')
+        if query:
+            products = Product.objects.filter(Q(name__icontains=query) | Q(description__icontains=query))
+            print(query, 'sus')
+        else:
+            products = Product.objects.all()
+            print(query, 'no sus')
+        print('all', query)
+        return products

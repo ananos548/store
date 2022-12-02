@@ -54,15 +54,26 @@
 	text-decoration: none;
 }
 
+
 #cat_product{
 	margin-left: 60px;
 	border: 2px solid whitesmoke;
 	margin-top: 2px;
-	width: 160px;
+	width: 149px;
+	height: 149px;
 }
 
 #cat_image:hover{
 	opacity: 0.2
+}
+
+#cat_laptop_image{
+    width: 200px;
+    border: 2px solid whitesmoke;
+    height: 149px;
+}
+#cat_laptop_image:hover{
+    opacity: 0.2
 }
 
 #product_detail{
@@ -73,7 +84,66 @@
 .product_description{
     margin-left: auto;
     margin-right: auto;
-    width: 500px;
+    width: 1000px;
     font-size: 25px;
     color: #1d1d1d;
 }
+
+#register_form{
+	margin-top: 200px;
+	font-size: 25px;
+	color: orange;
+}
+
+.is_not_authenticated{
+	color: black;
+	font-size: 20px;
+}
+
+.is_not_authenticated:hover{
+	font-size: 22px;
+	text-decoration: none;
+	color: #1d1d1d;
+}
+.dropdown{
+    position: relative;
+    word-wrap: break-word;
+    display: inline-block;
+    float: right;
+    margin-right: 75px;
+}
+
+.dropdown-menu{
+    background-color: black;
+    padding: 5px 10px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+    border-radius: 7px;
+    visibility: hidden;
+    opacity: 0;
+    z-index: -1;
+
+}
+
+.dropdown-menu.show{
+    z-index: 99;
+    visibility: visible;
+    opacity: 1;
+    background-color: whitesmoke;
+}
+
+.dropdown-menu a{
+    display: block;
+    opacity: 0.7;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    background-color: whitesmoke;
+}
+
+.dropdown-menu a:hover{
+    display: block;
+    opacity: 1;
+    text-decoration: none;
+    color: black;
+}
+
