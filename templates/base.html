@@ -1,3 +1,4 @@
+
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -8,6 +9,7 @@
 
 
 <body>
+<header>
 {% if request.user.is_authenticated %}
 <div class="dropdown">
     <button class="btn dropdown-toggle font-weight-bold" data-easy-toggle="#dropdown" data-easy-class="show"
@@ -29,10 +31,12 @@
        style="font-weight: bold; float: right; margin-right: 33px">Sing up</a>
     {% endif %}
 <p style="margin-top: 10px; margin-left: 5px; font-weight: bold;">
+    <a href="{% url 'mailing' %}" class="on_main_page" style="font-size: 20px;">Подписаться на рассылку</a><br>
     <a href="{% url 'index' %}" class="on_main_page">На главную</a><br>
     <a href="{% url 'products' %}" class="on_main_page">Ко всем продуктам</a>
 </p>
 
+</header>
 {% block content %}
 {% endblock %}
 </body>

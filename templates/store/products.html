@@ -27,12 +27,19 @@ List
         </a>
         <p style="font-size: 20px">{{ product.name }}</p>
         <p style="font-size: 22px">{{ product.price }} руб.</p>
+        <p style="font-size: 20px">Кол-во {{ product.quantity }}</p>
+
+
         <form method="post" action="{% url 'cart_add' product.id %}"><br>
             <p style="display: none"></p>
             {{ form }}
             {% csrf_token %}
             {% if request.user.is_authenticated %}
             <input type="submit" value="Add to cart">
+            {% if error %}
+                {{ error }}
+            {% endif %}
+            {{ error }}
             {% else %}
             <p>Войдите, чтобы добавить в корзину</p>
             {% endif %}

@@ -1,7 +1,9 @@
+from django.core.exceptions import ValidationError
 from django.shortcuts import redirect, get_object_or_404, render
 from django.views.decorators.http import require_POST
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import BaseFormView
+from django.http import HttpResponse
 
 from store.models import Product
 from cart.cart import Cart
@@ -29,6 +31,8 @@ def cart_add(request, product_id):
         cart.add(product=product,
                  quantity=cd['quantity'],
                  update_quantity=cd['update'])
+        if cd['quantity'] > product.quantity:
+            raise ValidationError('Вы добавили слишком много единиц товара')
     return redirect(request.META.get('HTTP_REFERER'))
 
 

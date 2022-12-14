@@ -33,6 +33,7 @@
             </a>
             <p style="font-size: 20px">{{ product.name }}</p>
             <p style="font-size: 22px">{{ product.price }} руб.</p>
+            <p style="font-size: 20px"> Кол-во {{ product.quantity }}</p>
     <form method="post" action="{% url 'cart_add' product.id %}">
         <p style="display: none"></p>
         {{ form }}

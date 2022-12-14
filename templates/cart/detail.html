@@ -18,10 +18,11 @@ Your shopping cart
             <form action="{% url 'cart_add' product.id %}" method="post" >
                 <div class="row mb-0" style="margin-left: 50px; border: 1px solid black;">
                 {% csrf_token %}
-                    <li><img src="{{ product.image.url }}" style="width:15vh; height: auto;"></li>
+                    <a href="{% url 'product_detail' product.id %}"><img src="{{ product.image.url }}" style="width:15vh; height: auto;"></a>
                 Кол-во {{ item.quantity }}
                 </div>
                 <p style="text-align: center;">{{ product.name }}</p>
+
                 {% for field in form %}
                 <div class="form-group" style="margin-left: 50px">{{ field }}</div>
                 {% endfor %}

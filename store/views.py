@@ -73,9 +73,6 @@ class SearchView(CartFormView, ListView):
         query = self.request.GET.get('search', '')
         if query:
             products = Product.objects.filter(Q(name__icontains=query) | Q(description__icontains=query))
-            print(query, 'sus')
         else:
             products = Product.objects.all()
-            print(query, 'no sus')
-        print('all', query)
         return products
