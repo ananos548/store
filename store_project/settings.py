@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-oq$6sq&-gror1pf=%n%#i+th0c@4rrdw5*kd#ttwu^7i(vevnr
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['proj-store.ru', '192.168.1.33', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['proj-store.ru', '192.168.1.33', 'localhost', '127.0.0.1', '0.0.0.0']
 
 # Application definition
 
@@ -79,9 +79,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'store_project.wsgi.application'
 
-# Database
-# https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-
 
 DATABASES = {
     'default': {
@@ -89,8 +86,8 @@ DATABASES = {
         'NAME': 'store',
         'USER': 'postgres',
         'PASSWORD': 'postgres',
-        'HOST': 'localhost',
-        'POST': '5432'
+        'HOST': 'web_db',
+        'POST': 5432
     }
 }
 

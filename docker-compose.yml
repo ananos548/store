@@ -1,0 +1,23 @@
+version: '3.9'
+
+services:
+  web_db:
+    image: postgres:14.5
+    environment:
+      POSTGRES_DB: 'store'
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+      PGDATA: "/var/lib/postgresql/data/"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+  web:
+    build: .
+    command: python /home/maksim/store_project/manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/home/maksim/store_project
+    ports:
+      - "8000:8000"
+    depends_on:
+      - web_db
+volumes:
+  postgres_data:
