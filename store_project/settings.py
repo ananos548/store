@@ -21,17 +21,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-oq$6sq&-gror1pf=%n%#i+th0c@4rrdw5*kd#ttwu^7i(vevnr'
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['proj-store.ru', '192.168.1.33', 'localhost', '127.0.0.1', '0.0.0.0']
-
-# Application definition
+ALLOWED_HOSTS = ['192.168.1.33', 'localhost', '127.0.0.1', '0.0.0.0']
 
 env = environ.Env()
 environ.Env.read_env()
+SECRET_KEY = os.environ.get("SECRET_KEY")
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -57,6 +54,8 @@ MIDDLEWARE = [
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
+CSRF_TRUSTED_ORIGINS = ['http://localhost:1337']
+
 ROOT_URLCONF = 'store_project.urls'
 
 TEMPLATES = [
@@ -79,17 +78,26 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'store_project.wsgi.application'
 
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'store',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'web_db',
-        'POST': 5432
+        'ENGINE': os.environ.get('SQL_ENGINE'),
+        'NAME': os.environ.get('SQL_NAME'),
+        'USER': os.environ.get('SQL_USER'),
+        'PASSWORD': os.environ.get('SQL_PASSWORD'),
+        'HOST': os.environ.get('SQL_HOST'),
+        'POST': os.environ.get('SQL_PORT'),
     }
 }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': env('SQL_ENGINE'),
+#         'NAME': env('SQL_NAME'),
+#         'USER': env('SQL_USER'),
+#         'PASSWORD': env('SQL_PASSWORD'),
+#         'HOST': env('SQL_HOST'),
+#         'POST': env('SQL_PORT'),
+#     }
+# }
 
 DJANGO_SETTINGS_MODULE = 'store_project.settings'
 
@@ -128,6 +136,8 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
