@@ -1,5 +1,3 @@
 req.txt
 /store_project/.env
 /media/
-.env.prod
-.env.dev
