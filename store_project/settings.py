@@ -78,6 +78,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'store_project.wsgi.application'
 
+DJANGO_SETTINGS_MODULE = 'store_project.settings'
+
 DATABASES = {
     'default': {
         'ENGINE': os.environ.get('SQL_ENGINE'),
@@ -99,10 +101,6 @@ DATABASES = {
 #     }
 # }
 
-DJANGO_SETTINGS_MODULE = 'store_project.settings'
-
-# Password validation
-# https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -149,10 +147,10 @@ EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'vapmaksim6@gmail.com'
-EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD'),
 EMAIL_PORT = 587
 
-REDIS_HOST = '0.0.0.0'
+REDIS_HOST = 'redis'
 REDIS_PORT = '6379'
 CELERY_BROKER_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
 CELERY_BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 3600}

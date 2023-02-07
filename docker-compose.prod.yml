@@ -33,6 +33,30 @@ services:
       - media_volume:/home/app/web/media
     depends_on:
       - web
+  redis:
+    image: redis:latest
+    hostname: redis
+    ports:
+      - "6379:6379"
+    environment:
+      REDIS_PORT: 6379
+      REDIS_HOST: redis
+
+  worker:
+    build: ./
+    command: celery -A store_project worker -l info
+    env_file:
+      - ./.env.prod
+    depends_on:
+      - redis
+      - web_db
+    environment:
+      - DB_HOST=web_db
+      - DB_NAME=store
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+    links:
+      - redis
 volumes:
   postgres_data:
   static_volume:

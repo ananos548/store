@@ -7,4 +7,3 @@ SQL_PASSWORD=postgres
 SQL_HOST=web_db
 SQL_PORT=5432
 DATABASE=postgres
-DJANGO_SETTINGS_MODULE=store_project.settings
