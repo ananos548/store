@@ -147,7 +147,7 @@ EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'vapmaksim6@gmail.com'
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD'),
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = 587
 
 REDIS_HOST = 'redis'
