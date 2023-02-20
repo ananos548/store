@@ -8,7 +8,7 @@ Email
 <form style="text-align: center; font-size: 30px;" action="{% url 'mailing' %}" method="post">
   {% csrf_token %}
   <p>Subscribe to the mailing</p>
-  <p>(Временно не работает на prodaction)</p>
+  <p>(Временно не работает на production)</p>
   <p>{{ form }}</p>
   <button class="btn btn-lg btn-dark"><span class="fa fa-paper-plane-o" aria-hidden="true">Подписаться</span></button>
 </form>
