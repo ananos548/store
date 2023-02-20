@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['194.26.138.178', 'localhost', '127.0.0.1', '0.0.0.0']
+ALLOWED_HOSTS = ['194.26.138.178', 'localhost', '127.0.0.1', '0.0.0.0', 'ip-api.com']
 
 env = environ.Env()
 environ.Env.read_env()
@@ -54,8 +54,8 @@ MIDDLEWARE = [
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
-CSRF_TRUSTED_ORIGINS = ['http://localhost:80']
-
+#CSRF_TRUSTED_ORIGINS = ['http://localhost:80']
+CSRF_TRUSTED_ORIGINS = ['http://194.26.138.178:80']
 ROOT_URLCONF = 'store_project.urls'
 
 TEMPLATES = [
@@ -143,11 +143,14 @@ LOGIN_REDIRECT_URL = '/'
 
 LOGOUT_REDIRECT_URL = '/login'
 
+
+
+
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'vapmaksim6@gmail.com'
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD'),
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = 587
 
 REDIS_HOST = 'redis'

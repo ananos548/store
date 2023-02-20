@@ -3,19 +3,18 @@ version: '3.3'
 services:
   web:
     build:
-      context: .
+      context: ./
       dockerfile: Dockerfile.prod
     command: gunicorn store_project.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - static_volume:/home/app/web/static
       - media_volume:/home/app/web/media
-    ports:
-      - 8000:8000
+    expose:
+      - "8000"
     env_file:
       - ./.env.prod
     depends_on:
       - web_db
-
   web_db:
     image: postgres:14.5
     environment:
@@ -34,15 +33,14 @@ services:
       - media_volume:/home/app/web/media
     depends_on:
       - web
-
   redis:
     image: redis:latest
     hostname: redis
-    ports:
-      - "9004:9004"
+  
     environment:
       REDIS_PORT: 6379
       REDIS_HOST: redis
+
   worker:
     build: ./
     command: celery -A store_project worker -l info
@@ -62,4 +60,3 @@ volumes:
   postgres_data:
   static_volume:
   media_volume:
-          
